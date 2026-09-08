@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Painel de Atendimento</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url("desenvolvimentoweb/madeiras.jpg");
+      background-size: 250px 250px;
+      background-repeat: repeat;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Barra de navegação ESTÁTICA */
+    nav.navbar {
+      background-color: rgba(0, 0, 0, 0.85);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+      /* Removido position: sticky; */
+    }
+
+    nav.navbar .logo {
+      color: #fff;
+      font-size: 28px;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+
+    nav.navbar ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav.navbar ul li {
+      margin-left: 30px;
+    }
+
+    nav.navbar ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav.navbar ul li a:hover {
+      color: #ffd700;
+    }
+
+    /* Responsivo */
+    @media (max-width: 768px) {
+      nav.navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav.navbar ul {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      nav.navbar ul li {
+        margin: 10px 0;
+      }
+    }
+
+    /* Resto do seu CSS continua igual */
+    .margin2 {
+      position: relative;
+      left: 310px;
+      top: -50px;
+    }
+
+    .margin3 {
+      position: relative;
+      left: 230px;
+      top: -100px;
+    }
+
+    .margin4 {
+      position: relative;
+      left: 230px;
+      top: -200px;
+    }
+
+    .margin5 {
+      position: relative;
+      left: 230px;
+      top: -800px;
+    }
+
+    .senha-container {
+      position: relative;
+      top: -620px;
+      display: inline-block;
+    }
+
+    #cliquesTexto {
+      position: absolute;
+      top: 290px;
+      left: 74%;
+      transform: translateX(-50%);
+      font-size: 60px;
+      color: white;
+      font-weight: bold;
+    }
+
+    #botao {
+      position: absolute;
+      top: 70%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      height: 400px;
+      width: 500px;
+    }
+
+    .lista-rolante {
+      position: relative;
+      top: -1100px;
+      max-height: 300px;
+      overflow-y: auto;
+      margin: 20px auto;
+      width: 500px;
+      font-size: 35px;
+      background-color: #ffffffcc;
+      padding: 10px;
+      border: 2px solid #444;
+      border-radius: 10px;
+    }
+
+    .lista-rolante div {
+      margin-bottom: 5px;
+    }
+
+    .placar {
+      position: fixed;
+      bottom: -200px;
+      left: 90%;
+      transform: translateX(-50%);
+      width: 400px;
+      z-index: 999;
+      opacity: 0;
+    }
+
+    .mostrar-placar {
+      animation: subirPlacar 1s ease-out forwards;
+    }
+
+    @keyframes subirPlacar {
+      0% { bottom: -200px; opacity: 0; }
+      100% { bottom: 1px; opacity: 1; }
+    }
+
+    #botaoExtra {
+      position: fixed;
+      bottom: 50px;
+      left: 90%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: auto;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .mostrar-botao {
+      opacity: 1 !important;
+      animation: subirBotao 1s ease-out forwards;
+    }
+
+    @keyframes subirBotao {
+      0% { opacity: 0; bottom: -200px; }
+      100% { opacity: 1; bottom: 50px; }
+    }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .subir-botao-next {
+      position: relative;
+      top: 50px;
+      animation: subirBotaoNext 1s ease-out forwards;
+      cursor: pointer;
+    }
+
+    @keyframes subirBotaoNext {
+      0% { opacity: 0; top: 100px; }
+      100% { opacity: 1; top: -300px; }
+    }
+
+    .hidden { display: none; }
+
+    .extra-images {
+      top: -1100px;
+      text-align: center;
+      margin-top: -1200px;
+    }
+
+    .extra-images img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra de navegação personalizada ESTÁTICA -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">Atendimento</a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Desenvolvedores.html">Desenvolvedores</a></li>
+      <li><a href="Sobre.html">Sobre</a></li>
+    </ul>
+  </nav>
+
+  <!-- Conteúdo principal -->
+  <img class="margin2" src="desenvolvimentoweb/sejabem.png" height="500" width="700" alt="Descrição da imagem"/>
+  <img class="margin3" src="desenvolvimentoweb/quadro2.png" height="700" width="900" alt="Descrição da imagem"/>
+  <img class="margin4" src="desenvolvimentoweb/titu2.png" height="700" width="900" alt="Descrição da imagem"/>
+
+  <div class="senha-container margin3">
+    <img id="senhaImg" src="desenvolvimentoweb/senha.png" height="700" width="900" alt="Descrição da imagem"/>
+    <div id="cliquesTexto">0</div>
+    <img id="botao" src="desenvolvimentoweb/bbotao.png" alt="Botão"/>
+  </div>
+
+  <img class="margin5" src="desenvolvimentoweb/senhascole.png" height="700" width="900" alt="Descrição da imagem"/>
+
+  <div id="listaNumeros" class="lista-rolante"></div>
+
+  <img id="placarImg" src="desenvolvimentoweb/placar.png" alt="Placar" class="placar" />
+  <img id="botaoExtra" src="desenvolvimentoweb/bbotao.png" alt="Botão Extra" style="cursor: pointer; display:none;" />
+
+  <div id="novasImagens" class="extra-images hidden">
+    <img src="desenvolvimentoweb/titulonext.png" alt="Título Next" class="fade-in" />
+    <img id="botaonext" src="desenvolvimentoweb/botaonext.png" alt="Botão Next" class="fade-in subir-botao-next" />
+  </div>
+
+  <script>
+    let cliques = 0;
+    let numero = 1000;
+    let placarVisivel = false;
+
+    const botaoExtra = document.getElementById("botaoExtra");
+    const botaonext = document.getElementById("botaonext");
+
+    let listaNumerosSalvos = JSON.parse(localStorage.getItem("listaNumeros")) || [];
+
+    document.getElementById("botao").addEventListener("click", function () {
+      cliques++;
+      document.getElementById("cliquesTexto").innerText = cliques;
+
+      const agora = new Date();
+      const dataFormatada = agora.toLocaleDateString("pt-BR") + " " + agora.toLocaleTimeString("pt-BR");
+
+      const novoItem = {
+        numero: numero,
+        data: dataFormatada
+      };
+
+      const novaLinha = document.createElement("div");
+      novaLinha.innerText = `${numero} - ${dataFormatada}`;
+      document.getElementById("listaNumeros").appendChild(novaLinha);
+      numero++;
+
+      listaNumerosSalvos.push(novoItem);
+      localStorage.setItem("listaNumeros", JSON.stringify(listaNumerosSalvos));
+
+      if (!placarVisivel) {
+        document.getElementById("placarImg").classList.add("mostrar-placar");
+        botaoExtra.style.display = "block";
+        botaoExtra.classList.add("mostrar-botao");
+        document.getElementById("novasImagens").classList.remove("hidden");
+        placarVisivel = true;
+      }
+    });
+
+    botaoExtra.addEventListener("click", function () {
+      window.location.href = "oi.html";
+    });
+
+    botaonext.addEventListener("click", function () {
+      window.location.href = "oi.html";
+    });
+  </script>
+</body>
+</html>

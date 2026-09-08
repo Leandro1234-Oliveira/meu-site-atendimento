@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>oi</title>
+  <style>
+    body {
+      background-image: url("desenvolvimentoweb/madeiras.jpg");
+      background-size: 250px 250px;
+      background-repeat: repeat;
+      font-family: Arial, sans-serif;
+    }
+
+    .margin2 {
+      position: relative;
+      left: 280px;
+      top: -50px;
+      width: 800px;
+      height: 600px;
+    }
+
+    .margin3 {
+      position: relative;
+      left: 260px;
+      top: -100px;
+      width: 850px;
+      height: 680px;
+    }
+
+    .lista-dados {
+      margin: 50px auto;
+      padding: 20px;
+      background: #ffffffdd;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      font-size: 20px;
+    }
+
+    #listaColetados, #listaAtendidos {
+      width: 600px;
+      margin: 30px auto;
+      padding: 30px;
+      position: relative;
+      left: 20px;
+    }
+
+    .lista-dados h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .item-numero {
+      margin-bottom: 10px;
+      padding: 8px;
+      background: #f9f9f9;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .item-numero span {
+      font-weight: bold;
+    }
+
+    #cronometro {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      color: #222;
+    }
+
+    .video-container {
+      position: relative;
+      top: -200px;
+      left: 25px;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .video-container video {
+      width: 600px;
+      height: 340px;
+      border: 30px solid #a14725;
+      border-radius: 10px;
+    }
+
+    /* NOVOS ELEMENTOS VISUAIS */
+    #placarImg, #botaoExtra, #novasImagens, #botaonext, #irparaImg {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    #placarImg {
+      bottom: -30px;
+      right: -10px;
+      width: 400px;
+    }
+
+    #botaoExtra {
+      bottom: 20px;
+      right: 40px;
+      width: 300px;
+      cursor: pointer;
+    }
+
+    #novasImagens {
+      bottom: 250px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+
+    #novasImagens img {
+      max-width: 100%;
+      margin-top: 20px;
+    }
+
+    #botaonext {
+      position: relative;
+      top: -400px;
+      display: none;
+      margin: 40px auto 0;
+      text-align: center;
+      animation: fadeIn 1.5s ease forwards;
+      width: 650px;
+      cursor: pointer;
+    }
+
+    /* NOVA IMAGEM irpara.png */
+    #irparaImg {
+      position: relative;
+      top: -300px;
+      margin: 60px auto 0;
+      display: none;
+      text-align: center;
+      animation: fadeIn 2s ease forwards;
+      width: 700px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <img class="margin2" src="desenvolvimentoweb/frasetela2.png" alt="Descrição da imagem"/>
+  <img class="margin3" src="desenvolvimentoweb/frase2tela2.png" alt="Descrição da imagem"/>
+
+  <!-- Números Coletados -->
+  <div class="lista-dados" id="listaColetados">
+    <h2>Senhas Coletadas</h2>
+    <div id="cronometro">Iniciando...</div>
+  </div>
+
+  <!-- Números Atendidos -->
+  <div class="lista-dados" id="listaAtendidos">
+    <h2>Senhas prontas para serem atendidas</h2>
+  </div>
+
+  <img class="margin3" src="desenvolvimentoweb/frase3tela2.png" alt="Descrição da imagem"/>
+
+  <!-- 🎬 Vídeo com borda -->
+  <div class="video-container">
+    <video autoplay muted controls>
+      <source src="desenvolvimentoweb/videoplayback.mp4" type="video/mp4">
+      Seu navegador não suporta a reprodução de vídeo.
+    </video>
+  </div>
+
+  <!-- Elementos finais -->
+  <img id="placarImg" src="desenvolvimentoweb/placar.png" alt="Placar" />
+  <img id="botaoExtra" src="desenvolvimentoweb/bbotao.png" alt="Botão Extra" />
+
+   <div style="text-align: center;">
+    <img id="irparaImg" src="desenvolvimentoweb/irpara.png" alt="Ir para" />
+  </div>
+
+
+  <!-- NOVO BOTÃO FINAL -->
+  <div style="text-align: center;">
+    <img id="botaonext" src="desenvolvimentoweb/botaonext.png" alt="Botão Próximo" />
+  </div>
+
+  <!-- NOVA IMAGEM QUE APARECE APÓS ATENDIMENTO COMPLETO -->
+ 
+  <script>
+    let lista = JSON.parse(localStorage.getItem("listaNumeros")) || [];
+    const containerColetados = document.getElementById("listaColetados");
+    const containerAtendidos = document.getElementById("listaAtendidos");
+    const cronometroEl = document.getElementById("cronometro");
+
+    const placarImg = document.getElementById("placarImg");
+    const botaoExtra = document.getElementById("botaoExtra");
+    const botaonext = document.getElementById("botaonext");
+    const irparaImg = document.getElementById("irparaImg"); // nova imagem
+
+    const fila = [...lista];
+    const elementosColetados = [];
+
+    if (fila.length === 0) {
+      containerColetados.innerHTML += "<p style='text-align:center;'>Nenhum número coletado ainda.</p>";
+    } else {
+      fila.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.className = "item-numero";
+        div.innerHTML = `<span>#${index + 1}</span>: Número <strong>${item.numero}</strong> - Registrado em ${item.data}`;
+        containerColetados.appendChild(div);
+        elementosColetados.push(div);
+      });
+
+      iniciarAtendimento();
+    }
+
+    function iniciarAtendimento() {
+      let tempoRestante = 10;
+      let intervalo = null;
+
+      const atualizarCronometro = () => {
+        cronometroEl.innerText = `Próximo atendimento em: ${tempoRestante}s`;
+        tempoRestante--;
+
+        if (tempoRestante < 0) {
+          atenderProximoNumero();
+          if (fila.length === 0) {
+            clearInterval(intervalo);
+            cronometroEl.innerText = "Todos os números foram atendidos.";
+            mostrarElementosFinais();
+          } else {
+            tempoRestante = 10;
+          }
+        }
+      };
+
+      intervalo = setInterval(atualizarCronometro, 1000);
+    }
+
+  function atenderProximoNumero() {
+  const atendido = fila.shift();
+  const elementoRemovido = elementosColetados.shift();
+
+  if (elementoRemovido) {
+    elementoRemovido.remove();
+  }
+
+  const dataAtendimento = new Date().toLocaleString("pt-BR");
+
+  const div = document.createElement("div");
+  div.className = "item-numero";
+  div.innerHTML = `<strong>${atendido.numero}</strong> - Atendido em ${dataAtendimento}`;
+  containerAtendidos.appendChild(div);
+
+  // Salvar no localStorage
+  const atendidosSalvos = JSON.parse(localStorage.getItem("numerosAtendidos")) || [];
+  atendidosSalvos.push({
+    numero: atendido.numero,
+    dataAtendido: dataAtendimento
+  });
+  localStorage.setItem("numerosAtendidos", JSON.stringify(atendidosSalvos));
+}
+
+
+    function mostrarElementosFinais() {
+      placarImg.style.display = "block";
+      botaoExtra.style.display = "block";
+
+      setTimeout(() => {
+        botaonext.style.display = "block";
+      }, 500);
+
+      // Exibir a imagem "irpara.png"
+      setTimeout(() => {
+        irparaImg.style.display = "block";
+      }, 1000);
+
+      botaoExtra.addEventListener("click", () => {
+        window.location.href = "bomdia.html";
+      });
+
+      botaonext.addEventListener("click", () => {
+        window.location.href = "bomdia.html";
+      });
+    }
+
+    localStorage.removeItem("listaNumeros");
+  </script>
+</body>
+</html>

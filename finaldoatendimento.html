@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fim do Atendimento</title>
+  <style>
+    body {
+      background-image: url("desenvolvimentoweb/madeiras.jpg");
+      background-size: 250px 250px;
+      background-repeat: repeat;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      color: #2e7d32;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 100px auto;
+      background-color: #ffffffcc;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 24px;
+      margin-bottom: 40px;
+    }
+
+    .botao-voltar {
+      padding: 15px 30px;
+      font-size: 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .botao-voltar:hover {
+      background-color: #388e3c;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Atendimento Encerrado</h1>
+    <p>Obrigado por utilizar nosso sistema!</p>
+
+    <!-- Botão de reinício, se quiser voltar ao início -->
+    <button class="botao-voltar" onclick="voltarParaInicio()">Voltar ao Início</button>
+  </div>
+
+  <script>
+    function voltarParaInicio() {
+      // Substitua "index.html" pelo nome da sua página inicial
+      window.location.href = "index.html";
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desenvolvedores</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url("desenvolvimentoweb/madeiras.jpg");
+      background-size: 250px 250px;
+      background-repeat: repeat;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Barra de navegação */
+    nav.navbar {
+      background-color: rgba(0, 0, 0, 0.85);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
+
+    nav.navbar .logo {
+      color: #fff;
+      font-size: 28px;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+
+    nav.navbar ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav.navbar ul li {
+      margin-left: 30px;
+    }
+
+    nav.navbar ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav.navbar ul li a:hover {
+      color: #ffd700;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 40px 20px;
+      gap: 30px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 550px;
+      text-align: center;
+      padding: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      margin: 10px 0 5px;
+    }
+
+    .card p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .margin2 {
+      position: relative;
+      left: 320px;
+      top: -50px;
+    }
+
+    /* Responsivo */
+    @media (max-width: 768px) {
+      nav.navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav.navbar ul {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      nav.navbar ul li {
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ⬆️ MOVIDO PARA O TOPO -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">Atendimento</a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Desenvolvedores.html">Desenvolvedores</a></li>
+      <li><a href="Sobre.html">Sobre</a></li>
+    </ul>
+  </nav>
+
+  <img class="margin2" src="desenvolvimentoweb/desen2.png" height="500" width="700" alt="Descrição da imagem"/>
+
+  <section class="container">
+    <div class="card">
+      <h3>LEANDRO OLIVEIRA MELO</h3>
+      <p>Frontend, UI Designer & Programming</p>
+    </div>
+
+    <div class="card">
+      <h3>GUILHERME GOMES DOS SANTOS</h3>
+      <p>UX & Testes</p>
+    </div>
+  </section>
+
+</body>
+</html>

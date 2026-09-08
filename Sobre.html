@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre o Projeto</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url("desenvolvimentoweb/madeiras.jpg");
+      background-size: 250px 250px;
+      background-repeat: repeat;
+      font-family: Arial, sans-serif;
+      color: #333;
+    }
+
+    nav.navbar {
+      background-color: rgba(0, 0, 0, 0.85);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
+
+    nav.navbar .logo {
+      color: #fff;
+      font-size: 28px;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+
+    nav.navbar ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav.navbar ul li {
+      margin-left: 30px;
+    }
+
+    nav.navbar ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav.navbar ul li a:hover {
+      color: #ffd700;
+    }
+
+    .conteudo {
+      max-width: 900px;
+      margin: 60px auto;
+      background: #ffffffcc;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .conteudo h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #222;
+      text-align: center;
+    }
+
+    .conteudo p {
+      font-size: 18px;
+      line-height: 1.6;
+      text-align: justify;
+      margin-bottom: 20px;
+    }
+
+    footer {
+      text-align: center;
+      margin: 40px auto 20px;
+      font-size: 16px;
+      color: #222;
+      background-color: #ffffffcc;
+      padding: 20px;
+      border-top: 2px solid #444;
+      max-width: 900px;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 768px) {
+      nav.navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav.navbar ul {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      nav.navbar ul li {
+        margin: 10px 0;
+      }
+
+      .conteudo, footer {
+        margin: 30px 10px;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra de navegação -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">Atendimento</a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="desenvolvedores.html">Desenvolvedores</a></li>
+      <li><a href="Sobre.html">Sobre</a></li>
+    </ul>
+  </nav>
+
+  <!-- Conteúdo da página Sobre -->
+  <section class="conteudo">
+    <h1>Sobre o Projeto</h1>
+    <p>
+      Este projeto foi desenvolvido com o objetivo de melhorar o atendimento e organização de senhas em ambientes de espera, como clínicas, repartições públicas ou serviços gerais.
+    </p>
+    <p>
+      A interface foi pensada para ser intuitiva, acessível e visualmente agradável, com recursos que ajudam tanto os usuários quanto os atendentes.
+    </p>
+    <p>
+      O sistema permite o controle e visualização de senhas geradas, além de armazenar localmente os dados durante o uso.
+    </p>
+    <p>
+      Este site é parte de um projeto estudantil voltado ao aprendizado prático de desenvolvimento web utilizando HTML, CSS e JavaScript.
+    </p>
+  </section>
+
+  <!-- Rodapé com créditos -->
+  <footer>
+    Projeto desenvolvido por <strong>Leandro Oliveira Melo</strong> e <strong>Guilherme Gomes dos Santos</strong>,<br>
+    alunos do curso de <strong>Análise e Desenvolvimento de Sistemas (ADS)</strong>,<br>
+    na disciplina de <strong>Algoritmo e Lógica de Programação</strong> com o professor <strong>Lobianco</strong>,<br>
+    no <strong>primeiro semestre</strong>.<br><br>
+    <em>Projeto concluído em 30 de setembro de 2025.</em>
+  </footer>
+
+</body>
+</html>

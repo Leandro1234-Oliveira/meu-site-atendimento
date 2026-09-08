@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Bom dia</title>
+
+  <!-- SDK EmailJS v4 -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    emailjs.init("YwRV7SUVTxN6ucvLg");
+  </script>
+
+  <style>
+    body {
+      background-image: url("desenvolvimentoweb/madeiras.jpg");
+      background-size: 250px 250px;
+      background-repeat: repeat;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .topo-imgs {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .topo-imgs img {
+      width: 90%;
+      max-width: 950px;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      text-align: center;
+      color: #2e7d32;
+      margin-bottom: 20px;
+    }
+
+    .item-numero {
+      margin-bottom: 10px;
+      padding: 10px;
+      background: #e8f5e9;
+      border-left: 5px solid #4CAF50;
+      border-radius: 4px;
+      font-size: 18px;
+      color: #2e7d32;
+      font-weight: bold;
+    }
+
+    .email-form {
+      max-width: 500px;
+      margin: 40px auto;
+      background: #ffffffdd;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+
+    .email-form input[type="email"] {
+      width: 80%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .email-form button {
+      padding: 10px 20px;
+      font-size: 16px;
+      color: white;
+      background-color: #4CAF50;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .email-form button:hover {
+      background-color: #388e3c;
+    }
+
+    .final-img {
+      display: block;
+      margin: 40px auto 20px;
+      max-width: 950px;
+      width: 90%;
+    }
+
+    #botaonext {
+      display: block;
+      margin: 20px auto 60px;
+      width: 60%;
+      max-width: 400px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Imagens do topo -->
+  <div class="topo-imgs">
+    <img src="desenvolvimentoweb/telabom1.png" alt="Imagem topo 1" />
+    <img src="desenvolvimentoweb/senhaatendidas.png" alt="Imagem topo 2" />
+  </div>
+
+  <!-- Lista de atendimentos -->
+  <div class="container">
+    <h1>Números Atendidos</h1>
+    <div id="listaAtendidos"></div>
+  </div>
+
+  <!-- Imagem final -->
+  <img class="final-img" src="desenvolvimentoweb/porfim.png" alt="Imagem final" />
+
+  <!-- Formulário de e-mail -->
+  <div class="email-form">
+    <h2>Receba a lista por e-mail</h2>
+    <input type="email" id="emailDestinatario" placeholder="Digite seu e-mail real" required />
+    <button onclick="enviarEmail()">Enviar</button>
+    <p id="statusEnvio" style="margin-top:10px;"></p>
+  </div>
+
+  <!-- Botão Próximo -->
+  <img id="botaonext" src="desenvolvimentoweb/botaonext.png" alt="Botão Próximo" onclick="irParaFinal()" />
+
+  <script>
+    const container = document.getElementById("listaAtendidos");
+    const numerosAtendidos = JSON.parse(localStorage.getItem("numerosAtendidos")) || [];
+
+    // Exibe a lista na tela
+    if (numerosAtendidos.length === 0) {
+      container.innerHTML = "<p style='text-align:center; color: green;'>Nenhum número atendido ainda.</p>";
+    } else {
+      numerosAtendidos.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.className = "item-numero";
+        div.innerHTML = `<strong>#${index + 1}:</strong> Número <strong>${item.numero}</strong> - Atendido em ${item.dataAtendido}`;
+        container.appendChild(div);
+      });
+    }
+
+    function enviarEmail() {
+      const email = document.getElementById("emailDestinatario").value;
+      const status = document.getElementById("statusEnvio");
+
+      if (!email) {
+        status.innerText = "Por favor, insira um e-mail.";
+        status.style.color = "red";
+        return;
+      }
+
+      if (numerosAtendidos.length === 0) {
+        status.innerText = "Nenhum número para enviar.";
+        status.style.color = "red";
+        return;
+      }
+
+      let mensagem = `
+        <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; font-family: Arial; width: 100%;">
+          <thead style="background-color: #4CAF50; color: white;">
+            <tr>
+              <th>#</th>
+              <th>Número</th>
+              <th>Data Atendido</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      numerosAtendidos.forEach((item, index) => {
+        mensagem += `
+          <tr>
+            <td style="text-align:center;">${index + 1}</td>
+            <td style="text-align:center;">${item.numero}</td>
+            <td style="text-align:center;">${item.dataAtendido}</td>
+          </tr>
+        `;
+      });
+
+      mensagem += `</tbody></table>`;
+
+      emailjs.send("service_b9dc4xs", "template_tl5jre5", {
+        to_email: email,
+        mensagem: mensagem
+      })
+      .then(() => {
+        status.innerText = "E-mail enviado com sucesso!";
+        status.style.color = "green";
+      })
+      .catch((error) => {
+        status.innerText = "Erro ao enviar e-mail.";
+        status.style.color = "red";
+        console.error(error);
+      });
+    }
+
+    // Limpa dados ao sair da página
+    window.addEventListener("beforeunload", function () {
+      localStorage.removeItem("numerosAtendidos");
+    });
+
+    function irParaFinal() {
+      window.location.href = "finaldoatendimento.html";
+    }
+  </script>
+
+</body>
+</html>
